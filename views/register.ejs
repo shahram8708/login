@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #registrationForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #4CAF50;
+            margin-top: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        button.reset {
+            background-color: #ff9800;
+            margin-top: 10px;
+        }
+
+        button.login {
+            background-color: #2196F3;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="registrationForm">
+        <h1>Register</h1>
+        <form action="/register" method="post" id="registerForm" onsubmit="return validateRegistrationForm()">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+            <br>
+            <button type="submit">Register</button>
+            <button type="button" class="reset" onclick="resetForm()">Reset</button>
+            <h2>If you already login, click the Dashboard button.</h2>
+            <a href="dashboard">Dashboard</a>
+            <h2>If you are registered, click the Login button.</h2>
+            <a href="login">Login</a>
+        </form>
+    </div>
+
+    <script>
+        function resetForm() {
+            document.getElementById("registerForm").reset();
+        }
+
+        const isAuthenticated = false;
+        const registrationMessage = '<%= registrationMessage %>';
+
+        if (registrationMessage) {
+            alert(registrationMessage);
+        }
+        function validateRegistrationForm() {
+            var username = document.getElementsByName("username")[0].value;
+            var password = document.getElementsByName("password")[0].value;
+
+            if (!username || !password) {
+                alert('Please enter both username and password.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+</body>
+
+</html>
