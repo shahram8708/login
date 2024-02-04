@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const User = require('./models/user');
 const MongoStore = require('connect-mongo');
-const ejs = require('ejs');
 
 const app = express();
 const port = 3000;
@@ -17,12 +16,7 @@ app.set('views', __dirname + '/views');
 
 const uri = "mongodb+srv://ramcoding8:Shah6708@cluster0.jibojlz.mongodb.net/Login?retryWrites=true&w=majority";
 
-const clientOptions = {
-    serverSelectionTimeoutMS: 5000,
-    serverApi: { version: '1', strict: true, deprecationErrors: true }
-};
-
-mongoose.connect(uri, clientOptions)
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Connected to MongoDB!");
     })
@@ -35,7 +29,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 const sessionStore = MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/auth_demo',
+    mongoUrl: uri,
     collection: 'sessions',
 });
 
