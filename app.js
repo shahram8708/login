@@ -15,7 +15,7 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-const uri = "mongodb+srv://ramcoding8:Shah6708@Login.ltub2bp.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://ramcoding8:Shah6708@cluster0.jibojlz.mongodb.net/Login?retryWrites=true&w=majority";
 
 const clientOptions = {
     serverSelectionTimeoutMS: 5000,
