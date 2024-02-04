@@ -15,7 +15,20 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-mongoose.connect('mongodb://localhost:27017/auth_demo', { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = "mongodb+srv://ramcoding8:Shah6708@Login.ltub2bp.mongodb.net/test?retryWrites=true&w=majority";
+
+const clientOptions = {
+    serverSelectionTimeoutMS: 5000,
+    serverApi: { version: '1', strict: true, deprecationErrors: true }
+};
+
+mongoose.connect(uri, clientOptions)
+    .then(() => {
+        console.log("Connected to MongoDB!");
+    })
+    .catch((error) => {
+        console.error("Error connecting to MongoDB:", error);
+    });
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
